@@ -11,13 +11,14 @@ function setCardType(type){
   const colors = {
     "visa": ["#436d99", "#2d57f2"],
     "mastercard": ["#df6f29", "#c69347"],
-    "defaul": ["black", "gray"],
+    "american express": ["#3B4095", "#6CB35E"],
+    "default": ["black", "gray"],
   }
   ccBgColor01.setAttribute("fill", colors[type][0])
   ccBgColor02.setAttribute("fill", colors[type][1])
+
   ccLogo.setAttribute("src", `cc-${type}.svg`)
 }
-
 
 const securityCode = document.querySelector("#security-code")
 const securityCodePattern = {
@@ -56,6 +57,26 @@ const cardNumberPatter = {
       regex: /(^5[1-5]\d{0,2}|^22[2-9]\d|^2[3-7]\d{0,2})\d{0,12}/,
       cardtype: "mastercard"
     },
+    {
+      mask: "0000 0000 0000 0000",
+      regex: /^3[47][0-9]{13}/,
+      cardtype: "american express"
+    },
+    // {
+    //   mask: "0000 0000 0000 0000",
+    //   regex: /^3(?:0[0-5]|[68][0-9])[0-9]{11}/,
+    //   cardtype: "diners club"
+    // },
+    // {
+    //   mask: "0000 0000 0000 0000",
+    //   regex: /^6(?:011|5[0-9]{2})[0-9]{12}/,
+    //   cardtype: "discover"
+    // },
+    // {
+    //   mask: "0000 0000 0000 0000",
+    //   regex: /^(?:2131|1800|35\d{3})\d{11}/,
+    //   cardtype: "jcb"
+    // },
     {
       mask: "0000 0000 0000 0000",
       cardtype: "default"
